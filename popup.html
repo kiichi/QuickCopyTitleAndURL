@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Copy Title and URL</title>
+    <style>
+		body {
+		  overflow: hidden;
+		  margin: 0px;
+		  padding: 0px;
+		  background: white;
+		}
+
+		div:first-child {
+		  margin-top: 0px;
+		}
+
+		div.menu-item {
+		  cursor: pointer;
+		  padding: 1px 3px;
+		  font-size: 1.0em;
+		  width: 200px;
+		  background: #cccccc;
+		  border: 1px solid #666;
+		}
+		div.menu-item:hover {
+		  background: #aaaaaa;
+		}
+		#clipboard {
+			position:absolute;
+			top:-100;
+			width:0px;
+			height:0px;
+			margin:0px;
+			padding:0px;
+		}
+    </style>
+	<script src="jquery-3.3.1.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <div class="menu-item" data-type="dash" data-action="single-copy">Copy Title - URL</div>
+    <div class="menu-item" data-type="bracket" data-action="single-copy">Copy [Title] URL</div>
+    <div class="menu-item" data-type="html" data-action="single-copy">Copy HTML</div>
+    <div class="menu-item" data-type="md" data-action="single-copy">Copy Markdown</div>
+	<!--
+    <div class="menu-item" data-type="dash" data-action="append-copy">Append Copy Title - URL</div>
+    <div class="menu-item" data-type="bracket" data-action="append-copy">Append Copy [Title] URL</div>
+    <div class="menu-item" data-type="" data-action="clear">Clear Queue</div>
+    <div class="message"></div>
+	-->
+	<textarea id="clipboard"></textarea>
+  </body>
+</html>
+
