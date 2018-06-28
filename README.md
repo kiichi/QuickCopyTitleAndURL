@@ -1,5 +1,10 @@
-# QuickCopyTitleAndURL
-Quickly copy Title and URL from Chrome Toolbar.
+# Copy Cat - Quickly Copy Title and URL
+
+# About this Chrome Extension
+
+I created this extension because similar extensions are too complicated and a few more clicks 
+to do the simple thing for my daily operation. For example, I often copy PR's Title and URL 
+in tickets or chat window.
 
 ## Extension URL
 https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc
