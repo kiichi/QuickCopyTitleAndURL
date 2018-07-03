@@ -6,6 +6,8 @@ I created this extension because similar extensions are too complicated and a fe
 to do the simple thing for my daily operation. For example, I often copy PR's Title and URL 
 in tickets or chat window.
 
+https://raw.githubusercontent.com/kiichi/QuickCopyTitleAndURL/master/resources/demo.gif
+
 ## Extension URL
 https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc
 
@@ -20,5 +22,4 @@ git clone https://github.com/kiichi/QuickCopyTitleAndURL.git
 4. Select LOAD UNPACKED from the middle menu
 5. Select src folder within this repository
 6. See Cat Icon on Top Right Corner.
-
 
