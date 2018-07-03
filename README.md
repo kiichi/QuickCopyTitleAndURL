@@ -8,7 +8,7 @@ in tickets or chat window.
 
 ![demo.gif (684×290)](https://raw.githubusercontent.com/kiichi/QuickCopyTitleAndURL/master/resources/demo.gif)
 
-## Extension URL
+## Chrome Web Store URL - Install it from here 
 https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc
 
 ## How to install and test this
