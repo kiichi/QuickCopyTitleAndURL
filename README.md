@@ -6,7 +6,7 @@ I created this extension because similar extensions are too complicated and a fe
 to do the simple thing for my daily operation. For example, I often copy PR's Title and URL 
 in tickets or chat window.
 
-https://raw.githubusercontent.com/kiichi/QuickCopyTitleAndURL/master/resources/demo.gif
+![demo.gif (684×290)](https://raw.githubusercontent.com/kiichi/QuickCopyTitleAndURL/master/resources/demo.gif)
 
 ## Extension URL
 https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc
