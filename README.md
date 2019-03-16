@@ -23,3 +23,9 @@ git clone https://github.com/kiichi/QuickCopyTitleAndURL.git
 5. Select src folder within this repository
 6. See Cat Icon on Top Right Corner.
 
+
+## Uploading to app store - Memo for myself
+
+https://developer.chrome.com/webstore/publish?hl
+
+1. run build.sh
