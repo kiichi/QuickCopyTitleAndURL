@@ -13,10 +13,16 @@ function onClick(e) {
 			txt = '[' + tabs[0].title+ '] ' + tabs[0].url;
 		}
 		else if (dataType == 'html') {
-			txt = '<a href="' + tabs[0].url+ '">' + tabs[0].url + '</a>';
+			txt = '<a href="' + tabs[0].url+ '">' + tabs[0].title + '</a>';
 		}
 		else if (dataType == 'md') {
 			txt = '[' + tabs[0].title+ '](' + tabs[0].url + ')';
+		}
+		else if (dataType == 'url') {
+			txt = tabs[0].url;
+		}
+		else if (dataType == 'title') {
+			txt = tabs[0].title;
 		}
 
 		$('#clipboard').text(txt);
