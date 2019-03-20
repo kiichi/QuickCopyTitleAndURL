@@ -22,10 +22,14 @@ git clone https://github.com/kiichi/QuickCopyTitleAndURL.git
 4. Select LOAD UNPACKED from the middle menu
 5. Select src folder within this repository
 6. See Cat Icon on Top Right Corner.
+7. If you change the code, click reload button to test again.
 
 
 ## Uploading to app store - Memo for myself
 
-https://developer.chrome.com/webstore/publish?hl
 
-1. run build.sh
+1. Bump the version in manifest.json
+2. Run build.sh
+3. Upload it to webstore.
+
+Reference https://developer.chrome.com/webstore/publish?hl
