@@ -1,39 +1,51 @@
 'use strict';
+// TODO: append mode and toastr
 //var queue = []; // use storage?
 function onClick(e) {
-	//var tabs = [{title:"hello " + new Date(),url:"http://google.com"}];
 	var dataType = $(this).attr('data-type');
 	var dataAction = $(this).attr('data-action');
 	chrome.tabs.query({
-		active: true,
+		active: (dataAction == 'single'),
 		currentWindow: true
 	}, function (tabs) {
-		var txt = 'ERROR - Sorry something went wrong.';
-		var mime = (dataType == 'rich') ? 'text/html': 'text/plain';
-		if (dataType === 'dash') {
-			txt = tabs[0].title + ' - ' + tabs[0].url;
-		}
-		else if (dataType == 'bracket') {
-			txt = '[' + tabs[0].title + '] ' + tabs[0].url;
-		}
-		else if (dataType == 'html' || dataType == 'rich') {
-			txt = '<a href="' + tabs[0].url + '">' + tabs[0].title + '</a>';
-		}
-		else if (dataType == 'md') {
-			txt = '[' + tabs[0].title + '](' + tabs[0].url + ')';
-		}
-		else if (dataType == 'url') {
-			txt = tabs[0].url;
-		}
-		else if (dataType == 'title') {
-			txt = tabs[0].title;
+		var allTxt = '';
+		for (var i=0; i<tabs.length; i++){
+			var txt = 'ERROR - Sorry something went wrong.';
+			var mime = (dataType == 'rich') ? 'text/html': 'text/plain';
+			if (dataType === 'dash') {
+				txt = tabs[i].title + ' - ' + tabs[i].url;
+			}
+			else if (dataType == 'bracket') {
+				txt = '[' + tabs[i].title + '] ' + tabs[i].url;
+			}
+			else if (dataType == 'newline') {
+				txt = tabs[i].title + '\n' + tabs[i].url;
+			}
+			else if (dataType == 'html' || dataType == 'rich') {
+				txt = '<a href="' + tabs[i].url + '">' + tabs[i].title + '</a>';
+			}
+			else if (dataType == 'md') {
+				var prefix = '';
+				if (tabs[i].url.indexOf('.jpg') > -1 || tabs[i].url.indexOf('.png') > -1){
+					prefix = '!';
+				}
+				txt = prefix + '[' + tabs[i].title + '](' + tabs[i].url + ')';
+			}
+			else if (dataType == 'url') {
+				txt = tabs[i].url;
+			}
+			else if (dataType == 'title') {
+				txt = tabs[i].title;
+			}
+			allTxt += txt;
+			if (tabs.length > 1){
+				allTxt += (dataType == 'html' || dataType == 'rich') ? '<br/>\n' : '\n';
+			}
 		}
 
-		copyToClip(mime,txt);
+		copyToClip(mime,allTxt);
 		window.close();
 	});
-	//chrome.tabs.create({"url": "http://google.com"});
-	//chrome.tabs.executeScript(null, {code:"document.body.style.backgroundColor='" + e.target.id + "'"});
 }
 
 function copyToClip(mime, str) {
@@ -47,5 +59,5 @@ function copyToClip(mime, str) {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-	$('.menu-item').on('click', onClick);
+	$('.pure-button').on('click', onClick);
 });
