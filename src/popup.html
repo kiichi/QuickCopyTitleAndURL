@@ -1,57 +1,81 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Copy Title and URL</title>
-    <style>
-		body {
-		  overflow: hidden;
-		  margin: 0px;
-		  padding: 0px;
-		  background: white;
+
+<head>
+	<title>Copy Title and URL</title>
+	<style>
+		.container {
+			width: 200px;
 		}
 
-		div:first-child {
-		  margin-top: 0px;
+		.pure-button {
+			width: 100%;
+			font-size: 90% !important;
+			border-radius: 0px !important;
 		}
 
-		div.menu-item {
-		  cursor: pointer;
-		  padding: 1px 3px;
-		  font-size: 1.0em;
-		  width: 200px;
-		  background: #cccccc;
-		  border: 1px solid #666;
+		.text-left {
+			text-align: left !important;
 		}
-		div.menu-item:hover {
-		  background: #aaaaaa;
-		}
+
 		#clipboard {
-			position:absolute;
-			top:-100;
-			width:0px;
-			height:0px;
-			margin:0px;
-			padding:0px;
+			position: absolute;
+			top: -100;
+			width: 0px;
+			height: 0px;
+			margin: 0px;
+			padding: 0px;
 		}
-    </style>
+	</style>
+	<link rel="stylesheet" href="pure-min.css" />
 	<script src="jquery-3.3.1.min.js"></script>
-    <script src="popup.js"></script>
-  </head>
-  <body>
-    <div class="menu-item" data-type="dash" data-action="single-copy">Copy Title - URL</div>
-    <div class="menu-item" data-type="bracket" data-action="single-copy">Copy [Title] URL</div>
-    <div class="menu-item" data-type="rich" data-action="single-copy">Copy Rich Text Link</div>
-    <div class="menu-item" data-type="html" data-action="single-copy">Copy HTML</div>
-    <div class="menu-item" data-type="md" data-action="single-copy">Copy Markdown</div>
-    <div class="menu-item" data-type="url" data-action="single-copy">Copy URL Only</div>
-    <div class="menu-item" data-type="title" data-action="single-copy">Copy Title Only</div>
-	<!--
-    <div class="menu-item" data-type="dash" data-action="append-copy">Append Copy Title - URL</div>
-    <div class="menu-item" data-type="bracket" data-action="append-copy">Append Copy [Title] URL</div>
-    <div class="menu-item" data-type="" data-action="clear">Clear Queue</div>
-    <div class="message"></div>
-	-->
-	<textarea id="clipboard"></textarea>
-  </body>
-</html>
+	<script src="popup.js"></script>
+</head>
 
+<body>
+	<div class="container">
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="dash" data-action="single">Copy Title -
+					URL</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="dash" data-action="all">All Tabs</button></div>
+		</div>
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="bracket" data-action="single">Copy
+					[Title] URL</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="bracket" data-action="all">All Tabs</button></div>
+		</div>
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="newline" data-action="single">Copy
+					 in Two Lines</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="newline" data-action="all">All Tabs</button></div>
+		</div>
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="rich" data-action="single">Copy Rich
+					Text Link</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="rich" data-action="all">All Tabs</button></div>
+		</div>
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="html" data-action="single">Copy
+					HTML</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="html" data-action="all">All Tabs</button></div>
+		</div>
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="md" data-action="single">Copy
+					Markdown</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="md" data-action="all">All Tabs</button></div>
+		</div>
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="title" data-action="single">Copy Title
+					Only</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="title" data-action="all">All Tabs</button></div>
+		</div>
+		<div class="pure-g">
+			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="url" data-action="single">Copy URL
+					Only</button></div>
+			<div class="pure-u-7-24"><button class="pure-button" data-type="url" data-action="all">All Tabs</button></div>
+		</div>
+	</div>
+	<textarea id="clipboard"></textarea>
+</body>
+
+</html>
