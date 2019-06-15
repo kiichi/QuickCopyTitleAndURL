@@ -26,10 +26,18 @@ function onClick(e) {
 			}
 			else if (dataType == 'md') {
 				var prefix = '';
-				if (tabs[i].url.indexOf('.jpg') > -1 || tabs[i].url.indexOf('.png') > -1){
+				if (isImage(tabs[i].url)){
 					prefix = '!';
 				}
 				txt = prefix + '[' + tabs[i].title + '](' + tabs[i].url + ')';
+			}
+			else if (dataType == 'bb') {
+				if (isImage(tabs[i].url)){
+					txt = '[img]'+tabs[i].url+'[/img]';
+				}
+				else {
+					txt = '[url='+tabs[i].url+']'+tabs[i].title+'[/url]';
+				}
 			}
 			else if (dataType == 'url') {
 				txt = tabs[i].url;
@@ -57,6 +65,10 @@ function copyToClip(mime, str) {
 	document.execCommand("copy");
 	document.removeEventListener("copy", listener);
 };
+
+function isImage(url){
+	return (url.indexOf('.jpg') > -1 || url.indexOf('.png') > -1);
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 	$('.pure-button').on('click', onClick);
