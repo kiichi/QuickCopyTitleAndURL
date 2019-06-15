@@ -11,7 +11,7 @@ in tickets or chat window.
 ## Chrome Web Store URL - Install it from here 
 https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc
 
-## How to install and test this
+## For Developers - How to install and test the latest
 
 1. Clone Repository.
 ```
@@ -27,9 +27,20 @@ git clone https://github.com/kiichi/QuickCopyTitleAndURL.git
 
 ## Uploading to app store - Memo for myself
 
-
 1. Bump the version in manifest.json
 2. Run build.sh
 3. Upload it to webstore.
 
 Reference https://developer.chrome.com/webstore/publish?hl
+
+## Credits
+
+jQuery v3.3.1 | (c) JS Foundation and other contributors | jquery.org/license 
+
+Pure v1.0.0
+Copyright 2013 Yahoo!
+Licensed under the BSD License.
+https://github.com/yahoo/pure/blob/master/LICENSE.md
+
+Icon Credits : M.Y
+
