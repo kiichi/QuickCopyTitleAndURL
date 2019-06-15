@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Copy Title and URL into Clipboard - Copy Cat",
+  "name": "Copy Cat - Quick Copy Title and URL",
   "description": "Quickly copy the title of page and url into your clipboard!",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "permissions": [
     "tabs",
   	"clipboardWrite"
