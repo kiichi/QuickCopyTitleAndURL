@@ -4,10 +4,11 @@
 function onClick(e) {
 	var dataType = $(this).attr('data-type');
 	var dataAction = $(this).attr('data-action');
-	chrome.tabs.query({
-		active: (dataAction == 'single'),
-		currentWindow: true
-	}, function (tabs) {
+	var options = {currentWindow:true};
+	if (dataAction == 'single'){
+		options['active'] = true;
+	}
+	chrome.tabs.query(options, function (tabs) {
 		var allTxt = '';
 		for (var i=0; i<tabs.length; i++){
 			var txt = 'ERROR - Sorry something went wrong.';
