@@ -13,38 +13,47 @@ function onClick(e) {
 		for (var i=0; i<tabs.length; i++){
 			var txt = 'ERROR - Sorry something went wrong.';
 			var mime = (dataType == 'rich') ? 'text/html': 'text/plain';
+			var tab_title = tabs[i].title;
+			var tab_url = tabs[i].url;
+
+			// remove leading "notification counts" that websites have started to add
+			//  For info, watch : https://www.youtube.com/watch?v=bV0QNuhN9fU&t=64s
+			var matches = tab_title.match(/^(\([0-9]+\) )?(.*)$/);			
+			if (matches) {
+				tab_title = matches[2];
+			}
 			if (dataType === 'dash') {
-				txt = tabs[i].title + ' - ' + tabs[i].url;
+				txt = tab_title + ' - ' + tab_url;
 			}
 			else if (dataType == 'bracket') {
-				txt = '[' + tabs[i].title + '] ' + tabs[i].url;
+				txt = '[' + tab_title + '] ' + tab_url;
 			}
 			else if (dataType == 'newline') {
-				txt = tabs[i].title + '\n' + tabs[i].url;
+				txt = tab_title + '\n' + tab_url;
 			}
 			else if (dataType == 'html' || dataType == 'rich') {
-				txt = '<a href="' + tabs[i].url + '">' + tabs[i].title + '</a>';
+				txt = '<a href="' + tab_url + '">' + tab_title + '</a>';
 			}
 			else if (dataType == 'md') {
 				var prefix = '';
-				if (isImage(tabs[i].url)){
+				if (isImage(tab_url)){
 					prefix = '!';
 				}
-				txt = prefix + '[' + tabs[i].title + '](' + tabs[i].url + ')';
+				txt = prefix + '[' + tab_title + '](' + tab_url + ')';
 			}
 			else if (dataType == 'bb') {
-				if (isImage(tabs[i].url)){
-					txt = '[img]'+tabs[i].url+'[/img]';
+				if (isImage(tab_url)){
+					txt = '[img]'+tab_url+'[/img]';
 				}
 				else {
-					txt = '[url='+tabs[i].url+']'+tabs[i].title+'[/url]';
+					txt = '[url='+tab_url+']'+tab_title+'[/url]';
 				}
 			}
 			else if (dataType == 'url') {
-				txt = tabs[i].url;
+				txt = tab_url;
 			}
 			else if (dataType == 'title') {
-				txt = tabs[i].title;
+				txt = tab_title;
 			}
 			allTxt += txt;
 			if (tabs.length > 1){
