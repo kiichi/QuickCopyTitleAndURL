@@ -9,7 +9,8 @@ in tickets or chat window.
 ![demo.gif (684×290)](https://raw.githubusercontent.com/kiichi/QuickCopyTitleAndURL/master/resources/demo.gif)
 
 ## Chrome Web Store URL - Install it from here 
-https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc
+
+[Copy Cat - Quick Copy Title and URL - Chrome Web Store](https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc/related)
 
 ## For Developers - How to install and test the latest
 
@@ -30,17 +31,24 @@ git clone https://github.com/kiichi/QuickCopyTitleAndURL.git
 1. Bump the version in manifest.json
 2. Run build.sh
 3. Upload it to webstore.
+4. Tag it in the master branch for the version number.
 
-Reference https://developer.chrome.com/webstore/publish?hl
+Reference [Publish in the Chrome Web Store - Google Chrome](https://developer.chrome.com/webstore/publish?hl)
 
 ## Credits
+
+### Contributers
+
+[jeske (David Jeske)](https://github.com/jeske) - Thanks to [Notification Prefix Cleaning PR #10](https://github.com/kiichi/QuickCopyTitleAndURL/pull/10)
+
+### Libraries
 
 jQuery v3.3.1 | (c) JS Foundation and other contributors | jquery.org/license 
 
 Pure v1.0.0
 Copyright 2013 Yahoo!
 Licensed under the BSD License.
-https://github.com/yahoo/pure/blob/master/LICENSE.md
+[pure/LICENSE at master · pure-css/pure](https://github.com/pure-css/pure/blob/master/LICENSE)
 
 Icon Credits : M.Y
 
