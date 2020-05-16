@@ -25,6 +25,11 @@ git clone https://github.com/kiichi/QuickCopyTitleAndURL.git
 6. See Cat Icon on Top Right Corner.
 7. If you change the code, click reload button to test again.
 
+## Debugging Tips
+
+1. Some of manifest changes requires reloading plugin. Click reload or remove and load unpacked folder again.
+2. In order to see console.log, click background page.
+
 
 ## Uploading to app store - Memo for myself
 

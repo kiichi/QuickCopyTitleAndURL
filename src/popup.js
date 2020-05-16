@@ -1,85 +1,35 @@
 'use strict';
-// TODO: append mode and toastr
-//var queue = []; // use storage?
+// TODO: append mode, // wrap in list, toastr, target=_blank for html, Japanese version
 function onClick(e) {
-	var dataType = $(this).attr('data-type');
-	var dataAction = $(this).attr('data-action');
-	var options = {currentWindow:true};
-	if (dataAction == 'single'){
-		options['active'] = true;
-	}
-	chrome.tabs.query(options, function (tabs) {
-		var allTxt = '';
-		for (var i=0; i<tabs.length; i++){
-			var txt = 'ERROR - Sorry something went wrong.';
-			var mime = (dataType == 'rich') ? 'text/html': 'text/plain';
-			var tab_title = tabs[i].title;
-			var tab_url = tabs[i].url;
+	let dataType = $(this).attr('data-type');
+	let dataAction = $(this).attr('data-action');
+	//doCopy(dataType,dataAction);
+	chrome.runtime.sendMessage({dataType: dataType, dataAction: dataAction}, (response)=>{});
+	window.close();
+}
 
-			// remove leading "notification counts" that websites have started to add
-			//  For info, watch : https://www.youtube.com/watch?v=bV0QNuhN9fU&t=64s
-			var matches = tab_title.match(/^(\([0-9]+\) )?(.*)$/);			
-			if (matches) {
-				tab_title = matches[2];
-			}
-			if (dataType === 'dash') {
-				txt = tab_title + ' - ' + tab_url;
-			}
-			else if (dataType == 'bracket') {
-				txt = '[' + tab_title + '] ' + tab_url;
-			}
-			else if (dataType == 'newline') {
-				txt = tab_title + '\n' + tab_url;
-			}
-			else if (dataType == 'html' || dataType == 'rich') {
-				txt = '<a href="' + tab_url + '">' + tab_title + '</a>';
-			}
-			else if (dataType == 'md') {
-				var prefix = '';
-				if (isImage(tab_url)){
-					prefix = '!';
-				}
-				txt = prefix + '[' + tab_title + '](' + tab_url + ')';
-			}
-			else if (dataType == 'bb') {
-				if (isImage(tab_url)){
-					txt = '[img]'+tab_url+'[/img]';
-				}
-				else {
-					txt = '[url='+tab_url+']'+tab_title+'[/url]';
-				}
-			}
-			else if (dataType == 'url') {
-				txt = tab_url;
-			}
-			else if (dataType == 'title') {
-				txt = tab_title;
-			}
-			allTxt += txt;
-			if (tabs.length > 1){
-				allTxt += (dataType == 'html' || dataType == 'rich') ? '<br/>\n' : '\n';
-			}
-		}
-
-		copyToClip(mime,allTxt);
-		window.close();
+function renderMenu(dataTypes, selectedDataType){
+	return dataTypes.map((item)=>{
+		return `<div class="pure-g">
+					<div class="pure-u-17-24">
+						<button class="pure-button text-left" 
+								data-type="${item.dataType}" 
+								data-action="single">Copy ${item.description} ${selectedDataType === item.dataType ? '&#10003;':'&nbsp;'}</button>
+					</div>
+					<div class="pure-u-7-24">
+						<button class="pure-button" data-type="${item.dataType}" data-action="all">All Tabs</button>
+					</div>
+				</div>
+				`;
 	});
 }
 
-function copyToClip(mime, str) {
-	function listener(e) {
-		e.clipboardData.setData(mime, str);
-		e.preventDefault();
-	}
-	document.addEventListener("copy", listener);
-	document.execCommand("copy");
-	document.removeEventListener("copy", listener);
-};
-
-function isImage(url){
-	return (url.indexOf('.jpg') > -1 || url.indexOf('.png') > -1);
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-	$('.pure-button').on('click', onClick);
+/////////////////////////////////////////////////////////////////////
+// General DOM Listener
+document.addEventListener('DOMContentLoaded', ()=>{
+	chrome.storage.local.get(['dataType'], (result)=>{
+        let lastUsedDataType = result.dataType || 'dash';
+		$('.container').html(renderMenu(Lookup.DataTypes, lastUsedDataType));
+		$('.pure-button').on('click', onClick);
+    });
 });
