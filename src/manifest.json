@@ -26,15 +26,15 @@
   "commands": {
     "single": {
       "suggested_key": {
-        "default": "Ctrl+Shift+P",
-        "mac": "Command+Shift+P"
+        "default": "Alt+Shift+C",
+        "mac": "MacCtrl+Shift+C"
       },
       "description": "Repeat previous copy"
     },
     "all": {
       "suggested_key": {
-        "default": "Ctrl+Shift+A",
-        "mac": "Command+Shift+A"
+        "default": "Alt+Shift+A",
+        "mac": "MacCtrl+Shift+A"
       },
       "description": "Repeat previous copy for all tabs"
     }
