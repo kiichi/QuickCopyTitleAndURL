@@ -5,82 +5,33 @@
 	<title>Copy Title and URL</title>
 	<style>
 		.container {
-			width: 200px;
+			width: 240px;
 		}
 
 		.pure-button {
 			width: 100%;
-			font-size: 90% !important;
+			font-size: 120% !important;
 			border-radius: 0px !important;
+		}
+		.pure-button .check {
+			font-size: 90% !important;
 		}
 
 		.text-left {
 			text-align: left !important;
 		}
 
-		#clipboard {
-			position: absolute;
-			top: -100;
-			width: 0px;
-			height: 0px;
-			margin: 0px;
-			padding: 0px;
-		}
+
 	</style>
-	<link rel="stylesheet" href="pure-min.css" />
-	<script src="jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="vendor/pure-min.css" />
+	<script src="vendor/jquery-3.3.1.min.js"></script>
+	<script src="common.js"></script>
 	<script src="popup.js"></script>
 </head>
 
 <body>
-	<div class="container">
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="dash" data-action="single">Copy Title -
-					URL</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="dash" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="bracket" data-action="single">Copy
-					[Title] URL</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="bracket" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="newline" data-action="single">Copy
-					 in Two Lines</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="newline" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="rich" data-action="single">Copy Rich
-					Text Link</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="rich" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="html" data-action="single">Copy
-					HTML</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="html" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="md" data-action="single">Copy
-					Markdown</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="md" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="bb" data-action="single">Copy
-					BBCode</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="bb" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="title" data-action="single">Copy Title
-					Only</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="title" data-action="all">All Tabs</button></div>
-		</div>
-		<div class="pure-g">
-			<div class="pure-u-17-24"><button class="pure-button text-left" data-type="url" data-action="single">Copy URL
-					Only</button></div>
-			<div class="pure-u-7-24"><button class="pure-button" data-type="url" data-action="all">All Tabs</button></div>
-		</div>
-	</div>
-	<textarea id="clipboard"></textarea>
+	<div id="menu" class="container"></div>
+	<!-- <div id="settings" class="container"></div> -->
 </body>
 
 </html>
