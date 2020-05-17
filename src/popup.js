@@ -4,8 +4,10 @@ function onClick(e) {
 	let dataType = $(this).attr('data-type');
 	let dataAction = $(this).attr('data-action');
 	//doCopy(dataType,dataAction);
-	chrome.runtime.sendMessage({dataType: dataType, dataAction: dataAction}, (response)=>{});
-	window.close();
+	//chrome.runtime.sendMessage({dataType: dataType, dataAction: dataAction}, (response)=>{});
+	doCopy(dataType,dataAction,(copiedText)=>{
+		window.close();
+	});
 }
 
 function renderMenu(dataTypes, selectedDataType){
