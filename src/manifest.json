@@ -25,19 +25,33 @@
     "persistent": false
   },
   "commands": {
-    "single": {
+    "shortcut-c": {
       "suggested_key": {
         "default": "Alt+Shift+C",
         "mac": "MacCtrl+Shift+C"
       },
-      "description": "Repeat previous copy"
+      "description": "Repeat previous copy (Default)"
     },
-    "all": {
+    "shortcut-a": {
       "suggested_key": {
         "default": "Alt+Shift+A",
         "mac": "MacCtrl+Shift+A"
       },
-      "description": "Repeat previous copy for all tabs"
+      "description": "Repeat previous copy for all tabs (Default)"
+    },
+    "shortcut-r": {
+      "suggested_key": {
+        "default": "Alt+Shift+R",
+        "mac": "MacCtrl+Shift+R"
+      },
+      "description": "Copy Rich Text (Default)"
+    },
+    "shortcut-m": {
+      "suggested_key": {
+        "default": "Alt+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      },
+      "description": "Copy Markdown (Default)"
     }
   }
 }

@@ -12,11 +12,16 @@ let notificationId = "copy-0";
 /////////////////////////////////////////////////////////////////////
 // Key Listener from manifest
 chrome.commands.onCommand.addListener((command) => {
-    //console.log(document);
-    //console.log(command);
     chrome.storage.local.get(['dataType'], (result) => {
+        // shortcut-c, default is previous selection
         let dataType = result.dataType || 'dash';
-        let dataAction = command; // see manifest shortcut definition
+        if (command === 'shortcut-r'){
+            dataType = 'rich';
+        }
+        else if (command === 'shortcut-m'){
+            dataType = 'md';
+        }
+        let dataAction = (command === 'shortcut-a') ? 'all' : 'single'; // see manifest shortcut definition
         doCopy(dataType, dataAction, (copiedText) => {
             let details = (dataAction === 'all') ? 'All Tabs' : copiedText;
             showNotification(dataType, dataAction, details);
@@ -28,11 +33,11 @@ chrome.commands.onCommand.addListener((command) => {
 // Context Menu
 function onContextMenuClickHandler(info, tab) {
     doCopy(info.menuItemId,'single', (copiedText)=>{
-        console.log('copied',copiedText);
+        //console.log('copied',copiedText);
     });
-    console.log("item " + info.menuItemId + " was clicked");
-    console.log("info: " + JSON.stringify(info));
-    console.log("tab: " + JSON.stringify(tab));
+    // console.log("item " + info.menuItemId + " was clicked");
+    // console.log("info: " + JSON.stringify(info));
+    // console.log("tab: " + JSON.stringify(tab));
 };
 
 chrome.contextMenus.onClicked.addListener(onContextMenuClickHandler);
