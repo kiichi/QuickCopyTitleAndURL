@@ -38,12 +38,6 @@ function onContextMenuClickHandler(info, tab) {
 chrome.contextMenus.onClicked.addListener(onContextMenuClickHandler);
 
 chrome.runtime.onInstalled.addListener(()=>{
-    Lookup.DataTypes.forEach((item)=>{
-        chrome.contextMenus.create({
-            "title": item.description, 
-            "type": "radio",
-            "id": item.dataType,
-        });
-    });
+   initContextMenu(); 
 });
 // TODO: use .udpate for checked
