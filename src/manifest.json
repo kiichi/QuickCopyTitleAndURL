@@ -30,28 +30,28 @@
         "default": "Alt+Shift+C",
         "mac": "MacCtrl+Shift+C"
       },
-      "description": "Repeat previous copy (Default)"
+      "description": "Copy Rich Text"
     },
-    "shortcut-a": {
+    "shortcut-x": {
       "suggested_key": {
-        "default": "Alt+Shift+A",
-        "mac": "MacCtrl+Shift+A"
+        "default": "Alt+Shift+X",
+        "mac": "MacCtrl+Shift+X"
       },
-      "description": "Repeat previous copy for all tabs (Default)"
+      "description": "Copy Title - URL"
     },
-    "shortcut-r": {
+    "shortcut-d": {
       "suggested_key": {
-        "default": "Alt+Shift+R",
-        "mac": "MacCtrl+Shift+R"
+        "default": "Alt+Shift+D",
+        "mac": "MacCtrl+Shift+D"
       },
-      "description": "Copy Rich Text (Default)"
+      "description": "Copy Markdown"
     },
-    "shortcut-m": {
+    "shortcut-z": {
       "suggested_key": {
-        "default": "Alt+Shift+M",
-        "mac": "MacCtrl+Shift+M"
+        "default": "Alt+Shift+Z",
+        "mac": "MacCtrl+Shift+Z"
       },
-      "description": "Copy Markdown (Default)"
+      "description": "Repeat previous copy"
     }
   }
 }

@@ -13,18 +13,25 @@ let notificationId = "copy-0";
 // Key Listener from manifest
 chrome.commands.onCommand.addListener((command) => {
     chrome.storage.local.get(['dataType'], (result) => {
-        // shortcut-c, default is previous selection
+        // See manifest file
+        // shortcut-z, default is previous selection
         let dataType = result.dataType || 'dash';
-        if (command === 'shortcut-r'){
+        if (command === 'shortcut-x'){
+            dataType = 'dash';
+        }
+        else if (command === 'shortcut-c'){
             dataType = 'rich';
         }
-        else if (command === 'shortcut-m'){
+        else if (command === 'shortcut-d'){
             dataType = 'md';
         }
-        let dataAction = (command === 'shortcut-a') ? 'all' : 'single'; // see manifest shortcut definition
+        else if (command === 'shortcut-z'){
+            // do nothing
+        }
+        let dataAction = 'single'; // see manifest shortcut definition
         doCopy(dataType, dataAction, (copiedText) => {
-            let details = (dataAction === 'all') ? 'All Tabs' : copiedText;
-            showNotification(dataType, dataAction, details);
+            //let details = (dataAction === 'all') ? 'All Tabs' : copiedText;
+            showNotification(dataType, dataAction, copiedText);
         });
     });
 });
