@@ -11,16 +11,45 @@ let notificationId = "copy-0";
 
 /////////////////////////////////////////////////////////////////////
 // Key Listener from manifest
-chrome.commands.onCommand.addListener((command)=>{
-    //console.log(document);
-    //console.log(command);
-    chrome.storage.local.get(['dataType'], (result)=>{
+chrome.commands.onCommand.addListener((command) => {
+    chrome.storage.local.get(['dataType'], (result) => {
+        // See manifest file
+        // shortcut-z, default is previous selection
         let dataType = result.dataType || 'dash';
-        let dataAction = command; // see manifest shortcut definition
-        doCopy(dataType,dataAction,(copiedText)=>{
-            let details = (dataAction === 'all') ? 'All Tabs' : copiedText;
-            showNotification(dataType, dataAction, details);
+        if (command === 'shortcut-x'){
+            dataType = 'dash';
+        }
+        else if (command === 'shortcut-c'){
+            dataType = 'rich';
+        }
+        else if (command === 'shortcut-d'){
+            dataType = 'md';
+        }
+        else if (command === 'shortcut-z'){
+            // do nothing
+        }
+        let dataAction = 'single'; // see manifest shortcut definition
+        doCopy(dataType, dataAction, (copiedText) => {
+            //let details = (dataAction === 'all') ? 'All Tabs' : copiedText;
+            showNotification(dataType, dataAction, copiedText);
         });
     });
 });
 
+/////////////////////////////////////////////////////////////////////
+// Context Menu
+function onContextMenuClickHandler(info, tab) {
+    doCopy(info.menuItemId,'single', (copiedText)=>{
+        //console.log('copied',copiedText);
+    });
+    // console.log("item " + info.menuItemId + " was clicked");
+    // console.log("info: " + JSON.stringify(info));
+    // console.log("tab: " + JSON.stringify(tab));
+};
+
+chrome.contextMenus.onClicked.addListener(onContextMenuClickHandler);
+
+chrome.runtime.onInstalled.addListener(()=>{
+   initContextMenu(); 
+});
+// TODO: use .udpate for checked

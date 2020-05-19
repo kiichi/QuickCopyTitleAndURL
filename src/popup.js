@@ -1,5 +1,4 @@
 'use strict';
-// TODO: append mode, // wrap in list, toastr, target=_blank for html, Japanese version
 function onClick(e) {
 	let dataType = $(this).attr('data-type');
 	let dataAction = $(this).attr('data-action');

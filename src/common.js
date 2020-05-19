@@ -99,7 +99,8 @@ function doCopy(dataType, dataAction, onSuccess){
     });
     
     // Save the dataType
-    chrome.storage.local.set({"dataType": dataType},()=>{});
+	chrome.storage.local.set({"dataType": dataType},()=>{});
+	updateContextMenu(dataType);
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -120,4 +121,21 @@ function showNotification(dataType, dataAction, details){
     chrome.notifications.create(notificationId, options, (notificationId)=>{
         //console.log("notification sent",notificationId,options);
     });
+}
+
+// TODO: Add type "separator" and "Settings" later on
+function initContextMenu(){
+	Lookup.DataTypes.forEach((item)=>{
+        chrome.contextMenus.create({
+            "title": `Copy ${item.description}`, 
+            "type": "radio",
+            "id": item.dataType,
+        });
+	});
+}
+
+function updateContextMenu(selectedDataType){
+	Lookup.DataTypes.forEach((item)=>{
+        chrome.contextMenus.update(item.dataType,{checked:(item.dataType === selectedDataType)});
+	});
 }

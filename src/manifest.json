@@ -2,12 +2,13 @@
   "manifest_version": 2,
   "name": "Copy Cat - Quick Copy Title and URL",
   "description": "Quickly copy the title of page and url into your clipboard!",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "permissions": [
     "tabs",
     "clipboardWrite",
     "notifications",
-    "storage"
+    "storage",
+    "contextMenus"
   ],
   "browser_action": {
       "default_title": "Copy Title and URL",
@@ -24,19 +25,33 @@
     "persistent": false
   },
   "commands": {
-    "single": {
+    "shortcut-c": {
       "suggested_key": {
         "default": "Alt+Shift+C",
         "mac": "MacCtrl+Shift+C"
       },
-      "description": "Repeat previous copy"
+      "description": "Copy Rich Text"
     },
-    "all": {
+    "shortcut-x": {
       "suggested_key": {
-        "default": "Alt+Shift+A",
-        "mac": "MacCtrl+Shift+A"
+        "default": "Alt+Shift+X",
+        "mac": "MacCtrl+Shift+X"
       },
-      "description": "Repeat previous copy for all tabs"
+      "description": "Copy Title - URL"
+    },
+    "shortcut-d": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "MacCtrl+Shift+D"
+      },
+      "description": "Copy Markdown"
+    },
+    "shortcut-z": {
+      "suggested_key": {
+        "default": "Alt+Shift+Z",
+        "mac": "MacCtrl+Shift+Z"
+      },
+      "description": "Repeat previous copy"
     }
   }
 }
