@@ -57,3 +57,12 @@ Licensed under the BSD License.
 
 Icon Credits : M.Y
 
+## Other Issues
+
+I noticed that very similar plugin has been published with same name "Copycat". 
+Not sure why I missed it 2 years ago, I might change the name of this extension 
+if this causes some issues. [Version 1.5.0 · Issue #16 · kiichi/QuickCopyTitleAndURL](https://github.com/kiichi/QuickCopyTitleAndURL/issues/16#issuecomment-633143286) . 
+I'm still holding decisions at this point.
+
+
+
