@@ -12,7 +12,11 @@ const Lookup = {
         { dataType:"bb", description:"BBCode" },
         { dataType:"title", description:"Title Only" },
         { dataType:"url", description:"URL Only" },
-    ]
+	],
+	DefaultConfig: {
+		size : "md",
+		all: "left"
+	}
 };
 
 /////////////////////////////////////////////////////////////////////
@@ -138,4 +142,36 @@ function updateContextMenu(selectedDataType){
 	Lookup.DataTypes.forEach((item)=>{
         chrome.contextMenus.update(item.dataType,{checked:(item.dataType === selectedDataType)});
 	});
+}
+
+function setConfig(key, val, callback){
+	getConfig((result)=>{
+		//console.log('got config',result);
+		result[key] = val;
+		chrome.storage.local.set({"config":result}, ()=>{
+			if (callback){
+				callback();
+			}
+		});
+	});
+}
+
+function getConfig(callback){
+	chrome.storage.local.get(["config"],(result) => {
+		//console.log('result',result);
+		const conf = result.config || Lookup.DefaultConfig;
+		//console.log('loaded config',conf);
+		if (callback){
+			callback(conf);
+		}
+	});
+}
+
+function openSettings(){
+	if (chrome.runtime.openOptionsPage) {
+		chrome.runtime.openOptionsPage();
+	}
+	else {
+		window.open(chrome.runtime.getURL('options.html'));
+	}
 }

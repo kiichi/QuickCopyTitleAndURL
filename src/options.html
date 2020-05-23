@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive email layout.">
+    <title>CopyCat Settings</title>
+    <link rel="stylesheet" href="vendor/pure-min.css">
+    <script src="vendor/jquery-3.3.1.min.js"></script>
+	<script src="common.js"></script>
+	<script src="options.js"></script>
+    <style>
+        body {
+            background-color: #ddd;
+        }
+
+        a {
+            cursor: pointer;
+        }
+        input[type=radio] {
+            margin-right:7px;
+        }
+        select {
+            cursor:pointer;
+        }
+        pre {
+           font-family: Arial, Helvetica, sans-serif;
+        }
+        hr {
+            background-color: #AAA;
+            border:0px;
+            height:1px;
+        }
+        #container {
+            min-width: 800px;
+            position: relative
+        }
+
+        #menu {
+            width: 200px;
+            background-color: black;
+            bottom: 0;
+            position: fixed;
+            top: 0;
+        }
+
+        #contents {
+            background-color:#ddd;
+            position: fixed;
+            left: 200px;
+            padding:20px;
+            width:83%;
+        }
+        .selected {
+            background:white;
+        }
+        .selected .pure-menu-link{
+            color:#222;
+        }
+        .contents {
+            display: none;
+        }
+
+        .about-top {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="menu">
+            <div class="pure-menu">
+                <span class="pure-menu-heading">CopyCat Settings</span>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item selected" data-contents="layout-contents">
+                        <a class="pure-menu-link" >Layout</a>
+                    </li>
+                    <li class="pure-menu-item" data-contents="shortcut-contents">
+                        <a class="pure-menu-link">Shortcuts</a>
+                    </li>
+                    <li class="pure-menu-item" data-contents="about-contents">
+                        <a class="pure-menu-link">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="contents">
+            <div class="contents" id="layout-contents">
+            <form class="pure-form pure-form-stacked" id="layout-form">
+                <fieldset>
+                    <label for="size">Size</label>
+                    <select id="size">
+                        <option value="sm">Small</option>
+                        <option value="md">Medium (Default)</option>
+                        <option value="lg">Large</option>
+                    </select>
+                    <br/>
+                    <label for="all">All Tabs Column</label>
+                    <select id="all">
+                        <option value="left">Left (Default)</option>
+                        <option value="right">Right</option>
+                    </select>
+                </fieldset>
+            </form>
+            </div>
+            <div class="contents" id="shortcut-contents">
+<pre>
+Copy Rich Text:
+- Windows: Alt+Shift+C
+- Mac: Ctrl+Shift+C
+
+Copy Markdown:
+- Windows: Alt+Shift+D
+- Mac: Ctrl+Shift+D
+
+Copy Title - URL:
+- Windows: Alt+Shift+X
+- Mac: Ctrl+Shift+X
+
+Copy Previous Format:
+- Windows: Alt+Shift+Z
+- Mac: Ctrl+Shift+Z</pre>
+            </div>
+            <div class="contents" id="about-contents">
+                <div class="about-top">
+                    <img src="icons/icon48.png"/>
+                    <h4>CopyCat Chrome Extension</h4>
+                </div>
+                <hr/>
+                <br/>
+                <br/>
+                <a href="https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc/" target="_blank">CopyCat Chrome Plugin Chrome Web Store</a>
+                <br/>
+                <br/>
+                <br/>
+                <a href="https://github.com/kiichi/QuickCopyTitleAndURL/blob/master/README.md" target="_blank">Credits and README Link</a>
+                <br/>
+                <br/>
+                <br/>
+                <a href="https://github.com/kiichi/QuickCopyTitleAndURL/issues" target="_blank">Report Issues</a>
+                <br/>
+                <br/>
+                <br/>
+                <a href="https://github.com/kiichi/QuickCopyTitleAndURL" target="_blank">Source Code and Project Page</a>
+                <br/>
+                <br/>
+                <hr/>
+                <br/>
+                CopyCat needs following permissions:<br/>
+                <ul>
+                    <li>tabs - Retrieve URL and Title information</li>
+                    <li>clipboardWrite - After retrieve URL and Title, it writes into your clipboard</li>
+                    <li>storage - this is used to store configuration settings</li>
+                    <li>notifications - Notification silently pops when you use shortcut keys</li>
+                    <li>contextMenus - Right Click Menu</li>
+                </ul>
+                <br/>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

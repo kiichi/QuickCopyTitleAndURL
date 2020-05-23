@@ -10,7 +10,7 @@ in tickets or chat window.
 
 ## Chrome Web Store URL - Install it from here 
 
-[Copy Cat - Quick Copy Title and URL - Chrome Web Store](https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc/related)
+[Copy Cat - Quick Copy Title and URL - Chrome Web Store](https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc/)
 
 ## For Developers - How to install and test the latest
 

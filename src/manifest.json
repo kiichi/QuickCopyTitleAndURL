@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Copy Cat - Quick Copy Title and URL",
   "description": "Quickly copy the title of page and url into your clipboard!",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "permissions": [
     "tabs",
     "clipboardWrite",
@@ -15,6 +15,7 @@
       "default_icon": "icons/icon.png",
       "default_popup": "popup.html"
   },
+  "options_page": "options.html",
   "icons": { 
   	"16": "icons/icon16.png",
     "48": "icons/icon48.png",
