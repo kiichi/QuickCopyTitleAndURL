@@ -9,6 +9,14 @@ $(document).ready(function(){
 
     $('#layout-form').on('change',function(ev){
         setConfig(ev.target.id, ev.target.value);
+        if (ev.target.id === 'contextMenu'){
+            if (ev.target.value==="on"){
+                initContextMenu();
+            }
+            else {
+                clearContextMenu();
+            }
+        }
     });
 
     // Init

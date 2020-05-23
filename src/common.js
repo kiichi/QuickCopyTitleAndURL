@@ -15,7 +15,8 @@ const Lookup = {
 	],
 	DefaultConfig: {
 		size : "md",
-		all: "left"
+		all: "left",
+		contextMenu: "on"
 	}
 };
 
@@ -136,6 +137,20 @@ function initContextMenu(){
             "id": item.dataType,
         });
 	});
+	chrome.contextMenus.create({
+		"title": '', 
+		"type": "separator",
+		"id": 'sep1'
+	});
+	chrome.contextMenus.create({
+		"title": 'Settings', 
+		"type": "normal",
+		"id": 'settings'
+	});
+}
+
+function clearContextMenu(){
+	chrome.contextMenus.removeAll();
 }
 
 function updateContextMenu(selectedDataType){
@@ -158,8 +173,15 @@ function setConfig(key, val, callback){
 
 function getConfig(callback){
 	chrome.storage.local.get(["config"],(result) => {
-		//console.log('result',result);
-		const conf = result.config || Lookup.DefaultConfig;
+		let conf = Lookup.DefaultConfig;
+		// merge key-value pairs
+		if (result.config){
+			Object.keys(result.config).forEach((key)=>{
+					if (result.config[key]){
+						conf[key] = result.config[key];
+					}
+			});
+		}
 		//console.log('loaded config',conf);
 		if (callback){
 			callback(conf);
