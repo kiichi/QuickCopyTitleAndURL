@@ -25,6 +25,8 @@ $(document).ready(function(){
         //console.log('conf',conf);
         Object.keys(conf).forEach((key)=>{
             $('#'+key).val(conf[key]);
-        })
+        });
     });
+    let meta = chrome.runtime.getManifest();
+    $('#version').text(`Version:${meta.version}`);
 });
