@@ -43,7 +43,7 @@ function renderMenu(dataTypes, selectedDataType, config){
 // General DOM Listener
 document.addEventListener('DOMContentLoaded', ()=>{
 	getConfigs((conf)=>{
-		getDataTypes('dash', Lookup.DataTypes, (dataType, dataTypes)=>{
+		getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (dataType, dataTypes)=>{
 			$('#menu').html(renderMenu(dataTypes, dataType, conf));
 			$('.pure-button').on('click', onClick);
 			$('#settings').on('click', onSettingsClick);

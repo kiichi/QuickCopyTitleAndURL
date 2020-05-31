@@ -106,7 +106,7 @@ function doCopy(dataType, dataAction, onSuccess){
     
 	
 	// dataType is user's selection on menu
-	getDataTypes('dash', Lookup.DataTypes, (loadedDataType, loadedDataTypes, loadedSortType)=>{
+	getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (loadedDataType, loadedDataTypes, loadedSortType)=>{
 		setDataTypes(dataType, loadedDataTypes, loadedSortType, ()=>{});	
 	});
 	updateContextMenu(dataType);
@@ -177,10 +177,11 @@ function setConfig(key, val, callback){
 
 // return: if config sort is 'default', force to return defaultDataTypes (via Lookup)
 // otherwise, it loads from the storage
-function getDataTypes(defaultDataType, defaultDataTypes, callback){
+function getDataTypes(defaultDataType, defaultDataTypes, defaultConfig, callback){
 	if (callback){
 		chrome.storage.local.get(['config','dataType','dataTypes'],(result)=>{
-			const sortType = result.config['sort'] || 'default';
+			const conf = result.config || defaultConfig;
+			const sortType = conf['sort'] || 'default';
 			const dataType = result.dataType || defaultDataType;
 			let dataTypes = result.dataTypes || defaultDataTypes;
 			if (sortType === 'default'){
