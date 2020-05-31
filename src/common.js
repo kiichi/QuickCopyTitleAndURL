@@ -3,20 +3,21 @@
 // Globals
 const Lookup = {
     DataTypes: [
-        { dataType:"dash", description:"Title - URL" },
-        { dataType:"bracket", description:"[Title] URL" },
-        { dataType:"newline", description:"in Two Lines" },
-        { dataType:"rich", description:"Rich Text Link" },
-        { dataType:"html", description:"HTML" },
-        { dataType:"md", description:"Markdown" },
-        { dataType:"bb", description:"BBCode" },
-        { dataType:"title", description:"Title Only" },
-        { dataType:"url", description:"URL Only" },
+        { dataType:"dash", description:"Title - URL", ordNum:10 },
+        { dataType:"bracket", description:"[Title] URL", ordNum:20 },
+        { dataType:"newline", description:"in Two Lines", ordNum:30 },
+        { dataType:"rich", description:"Rich Text Link", ordNum:40 },
+        { dataType:"html", description:"HTML", ordNum:50 },
+        { dataType:"md", description:"Markdown", ordNum:60 },
+        { dataType:"bb", description:"BBCode", ordNum:70 },
+        { dataType:"title", description:"Title Only", ordNum:80 },
+        { dataType:"url", description:"URL Only", ordNum:90 },
 	],
 	DefaultConfig: {
 		size : "md",
 		all: "left",
-		contextMenu: "on"
+		contextMenu: "on",
+		sort:'default' // default, usage, or custom
 	}
 };
 
@@ -103,8 +104,11 @@ function doCopy(dataType, dataAction, onSuccess){
         }
     });
     
-    // Save the dataType
-	chrome.storage.local.set({"dataType": dataType},()=>{});
+	
+	// dataType is user's selection on menu
+	getDataTypes('dash', Lookup.DataTypes, (loadedDataType, loadedDataTypes, loadedSortType)=>{
+		setDataTypes(dataType, loadedDataTypes, loadedSortType, ()=>{});	
+	});
 	updateContextMenu(dataType);
 }
 
@@ -160,7 +164,7 @@ function updateContextMenu(selectedDataType){
 }
 
 function setConfig(key, val, callback){
-	getConfig((result)=>{
+	getConfigs((result)=>{
 		//console.log('got config',result);
 		result[key] = val;
 		chrome.storage.local.set({"config":result}, ()=>{
@@ -171,7 +175,40 @@ function setConfig(key, val, callback){
 	});
 }
 
-function getConfig(callback){
+// return: if config sort is 'default', force to return defaultDataTypes (via Lookup)
+// otherwise, it loads from the storage
+function getDataTypes(defaultDataType, defaultDataTypes, callback){
+	if (callback){
+		chrome.storage.local.get(['config','dataType','dataTypes'],(result)=>{
+			const sortType = result.config['sort'] || 'default';
+			const dataType = result.dataType || defaultDataType;
+			let dataTypes = result.dataTypes || defaultDataTypes;
+			if (sortType === 'default'){
+				dataTypes = defaultDataTypes;
+			}
+			callback(dataType, dataTypes, sortType);
+		});
+	}
+}
+
+// Set dataTypes order (max ordNum = -tick)
+function setDataTypes(dataType, defaultDataTypes, sortType, callback){
+	let dataTypes = defaultDataTypes;
+	if (sortType === 'usage'){
+		dataTypes = defaultDataTypes.map((item)=>{
+			if (item.dataType === dataType){
+				item["ordNum"] = -(new Date()).getTime();
+			}
+			return item;
+		});
+	}
+	
+	chrome.storage.local.set({"dataType": dataType,
+							  "dataTypes": dataTypes},
+							  callback);
+}
+
+function getConfigs(callback){
 	chrome.storage.local.get(["config"],(result) => {
 		let conf = Lookup.DefaultConfig;
 		// merge key-value pairs
@@ -187,6 +224,14 @@ function getConfig(callback){
 			callback(conf);
 		}
 	});
+}
+
+function getConfig(key, defaultValue, callback){
+	if (callback){
+		getConfigs((result)=>{
+			callback(result[key] || defaultValue);
+		});
+	}
 }
 
 function openSettings(){

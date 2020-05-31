@@ -21,12 +21,12 @@ $(document).ready(function(){
 
     // Init
     $('#layout-contents').show();
-    getConfig(function(conf){
+    getConfigs((conf)=>{
         //console.log('conf',conf);
         Object.keys(conf).forEach((key)=>{
             $('#'+key).val(conf[key]);
         });
     });
-    let meta = chrome.runtime.getManifest();
+    const meta = chrome.runtime.getManifest();
     $('#version').text(`Version:${meta.version}`);
 });
