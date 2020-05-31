@@ -10,7 +10,7 @@ in tickets or chat window.
 
 ## Chrome Web Store URL - Install it from here 
 
-[Copy Cat - Quick Copy Title and URL - Chrome Web Store](https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc/related)
+[Copy Cat - Quick Copy Title and URL - Chrome Web Store](https://chrome.google.com/webstore/detail/copy-cat-quick-copy-title/andlmjmbnlaamloflnelcafcnkiplhkc/)
 
 ## For Developers - How to install and test the latest
 
@@ -44,9 +44,15 @@ Reference [Publish in the Chrome Web Store - Google Chrome](https://developer.ch
 
 ### Contributers
 
-[jeske (David Jeske)](https://github.com/jeske) - Thanks to [Notification Prefix Cleaning PR #10](https://github.com/kiichi/QuickCopyTitleAndURL/pull/10)
+[jeske (David Jeske)](https://github.com/jeske) - Thanks for [Notification Prefix Cleaning PR #10](https://github.com/
+kiichi/QuickCopyTitleAndURL/pull/10)
 
-### Libraries
+[alejandro5042 (Alejandro Barreto)](https://github.com/alejandro5042) - Thanks for Font Size feedback and quick mockup design! #13
+
+[smaragdus](https://github.com/smaragdus) - Thanks for Font Size feedback and extensive review in Windows! #16
+
+
+### Libraries and Resources
 
 jQuery v3.3.1 | (c) JS Foundation and other contributors | jquery.org/license 
 
@@ -56,4 +62,13 @@ Licensed under the BSD License.
 [pure/LICENSE at master · pure-css/pure](https://github.com/pure-css/pure/blob/master/LICENSE)
 
 Icon Credits : M.Y
+
+## Other Issues
+
+I noticed that very similar plugin has been published with same name "Copycat". 
+Not sure why I missed it 2 years ago, but I might change the name of this extension 
+if this causes some issues. [Version 1.5.0 · Issue #16 · kiichi/QuickCopyTitleAndURL](https://github.com/kiichi/QuickCopyTitleAndURL/issues/16#issuecomment-633143286) . 
+I'm still holding decisions at this point.
+
+
 

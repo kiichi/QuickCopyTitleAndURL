@@ -39,9 +39,14 @@ chrome.commands.onCommand.addListener((command) => {
 /////////////////////////////////////////////////////////////////////
 // Context Menu
 function onContextMenuClickHandler(info, tab) {
-    doCopy(info.menuItemId,'single', (copiedText)=>{
-        //console.log('copied',copiedText);
-    });
+    if (info.menuItemId === 'settings'){
+        openSettings();
+    }
+    else {
+        doCopy(info.menuItemId,'single', (copiedText)=>{
+            //console.log('copied',copiedText);
+        });
+    }
     // console.log("item " + info.menuItemId + " was clicked");
     // console.log("info: " + JSON.stringify(info));
     // console.log("tab: " + JSON.stringify(tab));
