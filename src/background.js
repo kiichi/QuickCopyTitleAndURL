@@ -55,6 +55,8 @@ function onContextMenuClickHandler(info, tab) {
 chrome.contextMenus.onClicked.addListener(onContextMenuClickHandler);
 
 chrome.runtime.onInstalled.addListener(()=>{
-   initContextMenu(); 
+    getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (loadedDataType, loadedDataTypes, loadedSortType)=>{
+        initContextMenu(loadedDataType, loadedDataTypes, loadedSortType);
+    });
 });
 // TODO: use .udpate for checked

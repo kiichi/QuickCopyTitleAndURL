@@ -108,8 +108,8 @@ function doCopy(dataType, dataAction, onSuccess){
 	// dataType is user's selection on menu
 	getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (loadedDataType, loadedDataTypes, loadedSortType)=>{
 		setDataTypes(dataType, loadedDataTypes, loadedSortType, ()=>{});	
+		initContextMenu(dataType, loadedDataTypes, loadedSortType);
 	});
-	updateContextMenu(dataType);
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -132,34 +132,32 @@ function showNotification(dataType, dataAction, details){
     });
 }
 
-// TODO: Add type "separator" and "Settings" later on
-function initContextMenu(){
-	Lookup.DataTypes.forEach((item)=>{
-        chrome.contextMenus.create({
-            "title": `Copy ${item.description}`, 
-            "type": "radio",
-            "id": item.dataType,
-        });
-	});
-	chrome.contextMenus.create({
-		"title": '', 
-		"type": "separator",
-		"id": 'sep1'
-	});
-	chrome.contextMenus.create({
-		"title": 'Settings', 
-		"type": "normal",
-		"id": 'settings'
-	});
-}
-
 function clearContextMenu(){
 	chrome.contextMenus.removeAll();
 }
 
-function updateContextMenu(selectedDataType){
-	Lookup.DataTypes.forEach((item)=>{
-        chrome.contextMenus.update(item.dataType,{checked:(item.dataType === selectedDataType)});
+// Note: dataTypes has to be provided after getDataTypes
+function initContextMenu(dataType, dataTypes, sortType){
+	chrome.contextMenus.removeAll(()=>{
+		dataTypes.sort((item1,item2)=>item1.ordNum-item2.ordNum)
+				.forEach((item)=>{
+					chrome.contextMenus.create({
+						"title": `Copy ${item.description}`, 
+						"type": "radio",
+						"id": item.dataType,
+						"checked": (item.dataType === dataType)
+					});
+				});
+		chrome.contextMenus.create({
+			"title": '', 
+			"type": "separator",
+			"id": 'sep1'
+		});
+		chrome.contextMenus.create({
+			"title": 'Settings', 
+			"type": "normal",
+			"id": 'settings'
+		});
 	});
 }
 

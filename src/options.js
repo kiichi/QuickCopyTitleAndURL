@@ -11,7 +11,9 @@ $(document).ready(function(){
         setConfig(ev.target.id, ev.target.value);
         if (ev.target.id === 'contextMenu'){
             if (ev.target.value==="on"){
-                initContextMenu();
+                getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (loadedDataType, loadedDataTypes, loadedSortType)=>{
+                    initContextMenu(loadedDataType, loadedDataTypes, loadedSortType);
+                });
             }
             else {
                 clearContextMenu();
