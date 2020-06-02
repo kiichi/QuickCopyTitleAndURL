@@ -12,10 +12,10 @@ let notificationId = "copy-0";
 /////////////////////////////////////////////////////////////////////
 // Key Listener from manifest
 chrome.commands.onCommand.addListener((command) => {
-    chrome.storage.local.get(['dataType'], (result) => {
+    getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (loadedDataType, loadedDataTypes, loadedSortType)=>{
         // See manifest file
         // shortcut-z, default is previous selection
-        let dataType = result.dataType || 'dash';
+        let dataType = loadedDataType || 'dash';
         if (command === 'shortcut-x'){
             dataType = 'dash';
         }
@@ -55,6 +55,8 @@ function onContextMenuClickHandler(info, tab) {
 chrome.contextMenus.onClicked.addListener(onContextMenuClickHandler);
 
 chrome.runtime.onInstalled.addListener(()=>{
-   initContextMenu(); 
+    getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (loadedDataType, loadedDataTypes, loadedSortType)=>{
+        initContextMenu(loadedDataType, loadedDataTypes, loadedSortType);
+    });
 });
 // TODO: use .udpate for checked

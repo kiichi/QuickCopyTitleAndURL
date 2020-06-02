@@ -12,7 +12,9 @@ function onSettingsClick(e){
 }
 
 function renderMenu(dataTypes, selectedDataType, config){
-	const menuHtml = dataTypes.map((item)=>{
+	const menuHtml = dataTypes
+						.sort((item1,item2)=>item1.ordNum - item2.ordNum)
+						.map((item)=>{
 		const allCol = `<div class="pure-u-8-24">
 							<button class="pure-button text-center pure-button-${config.size}" 
 									data-type="${item.dataType}" 
@@ -40,10 +42,9 @@ function renderMenu(dataTypes, selectedDataType, config){
 /////////////////////////////////////////////////////////////////////
 // General DOM Listener
 document.addEventListener('DOMContentLoaded', ()=>{
-	getConfig((conf)=>{
-		chrome.storage.local.get(['dataType'], (result)=>{
-			let lastUsedDataType = result.dataType || 'dash';
-			$('#menu').html(renderMenu(Lookup.DataTypes, lastUsedDataType, conf));
+	getConfigs((conf)=>{
+		getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (dataType, dataTypes)=>{
+			$('#menu').html(renderMenu(dataTypes, dataType, conf));
 			$('.pure-button').on('click', onClick);
 			$('#settings').on('click', onSettingsClick);
 		});

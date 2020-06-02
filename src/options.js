@@ -11,7 +11,9 @@ $(document).ready(function(){
         setConfig(ev.target.id, ev.target.value);
         if (ev.target.id === 'contextMenu'){
             if (ev.target.value==="on"){
-                initContextMenu();
+                getDataTypes('dash', Lookup.DataTypes, Lookup.DefaultConfig, (loadedDataType, loadedDataTypes, loadedSortType)=>{
+                    initContextMenu(loadedDataType, loadedDataTypes, loadedSortType);
+                });
             }
             else {
                 clearContextMenu();
@@ -21,12 +23,12 @@ $(document).ready(function(){
 
     // Init
     $('#layout-contents').show();
-    getConfig(function(conf){
+    getConfigs((conf)=>{
         //console.log('conf',conf);
         Object.keys(conf).forEach((key)=>{
             $('#'+key).val(conf[key]);
         });
     });
-    let meta = chrome.runtime.getManifest();
+    const meta = chrome.runtime.getManifest();
     $('#version').text(`Version:${meta.version}`);
 });
